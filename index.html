@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taniti Tourism</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9fafb; /* Light gray background */
+        }
+        .page {
+            display: none; /* Hide pages by default */
+        }
+        .page.active {
+            display: block; /* Show active page */
+        }
+        /* Custom scrollbar for a more elegant feel */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+        .nav-link {
+            @apply px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-sky-100 hover:text-sky-700 transition-colors;
+        }
+        .nav-link.active-nav {
+            @apply bg-sky-500 text-white hover:bg-sky-600;
+        }
+        .card {
+            @apply bg-white rounded-xl shadow-lg overflow-hidden transition-shadow duration-300 hover:shadow-xl;
+        }
+        .btn {
+            @apply px-6 py-3 rounded-lg font-semibold text-white transition-colors duration-300;
+        }
+        .btn-primary {
+            @apply bg-sky-500 hover:bg-sky-600;
+        }
+        .btn-secondary {
+            @apply bg-gray-500 hover:bg-gray-600;
+        }
+        .hero-section {
+            background-image: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.1)), url('https://placehold.co/1200x600/63A4FF/FFFFFF?text=Beautiful+Taniti+Beach');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center">
+                    <a href="#" class="text-3xl font-bold text-sky-600 page-link" data-page="home">Taniti</a>
+                </div>
+                <div class="hidden md:flex items-center space-x-2 lg:space-x-4">
+                    <a href="#" class="nav-link page-link active-nav" data-page="home">Home</a>
+                    <a href="#" class="nav-link page-link" data-page="things-to-do">Things to Do</a>
+                    <a href="#" class="nav-link page-link" data-page="plan-trip">Plan Your Trip</a>
+                    <a href="#" class="nav-link page-link" data-page="accommodation">Accommodation</a>
+                    <a href="#" class="nav-link page-link" data-page="about-taniti">About Taniti</a>
+                </div>
+                <div class="hidden md:flex items-center">
+                    <input type="search" placeholder="Search..." class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-sky-500 focus:border-sky-500 transition-all text-sm">
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" class="text-gray-600 hover:text-sky-600 focus:outline-none focus:text-sky-600">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div id="mobile-menu" class="md:hidden hidden pb-3">
+                <a href="#" class="block nav-link page-link active-nav" data-page="home">Home</a>
+                <a href="#" class="block nav-link page-link" data-page="things-to-do">Things to Do</a>
+                <a href="#" class="block nav-link page-link" data-page="plan-trip">Plan Your Trip</a>
+                <a href="#" class="block nav-link page-link" data-page="accommodation">Accommodation</a>
+                <a href="#" class="block nav-link page-link" data-page="about-taniti">About Taniti</a>
+                <input type="search" placeholder="Search..." class="mt-2 w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-sky-500 focus:border-sky-500 transition-all text-sm">
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+        <div id="home-page" class="page active">
+            <section class="hero-section text-white py-20 md:py-32 rounded-xl shadow-lg mb-12 text-center">
+                <div class="container mx-auto px-4">
+                    <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-4">Welcome to Taniti</h1>
+                    <p class="text-lg sm:text-xl md:text-2xl mb-8">Small Island, Endless Discoveries.</p>
+                    <a href="#" class="btn btn-primary page-link text-lg" data-page="things-to-do">Explore Activities</a>
+                </div>
+            </section>
+
+            <section class="mb-12">
+                <h2 class="text-3xl font-semibold mb-8 text-center text-sky-700">Explore Our Island</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="card">
+                        <img src="https://placehold.co/600x400/87CEEB/FFFFFF?text=Pristine+Beaches" alt="Pristine Beaches" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2 text-sky-600">Pristine Beaches</h3>
+                            <p class="text-gray-600 mb-4">Relax on our sandy and rocky shores, perfect for sunbathing and swimming.</p>
+                            <a href="#" class="font-medium text-sky-500 hover:text-sky-700 page-link" data-page="activity-detail" data-activity="beaches">Learn More &rarr;</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="https://placehold.co/600x400/228B22/FFFFFF?text=Lush+Rainforests" alt="Lush Rainforests" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2 text-sky-600">Lush Rainforests</h3>
+                            <p class="text-gray-600 mb-4">Discover diverse flora and fauna in our tropical rainforests. Ideal for hiking and zip-lining.</p>
+                            <a href="#" class="font-medium text-sky-500 hover:text-sky-700 page-link" data-page="activity-detail" data-activity="rainforest">Learn More &rarr;</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="https://placehold.co/600x400/FF7F50/FFFFFF?text=Active+Volcano" alt="Active Volcano" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2 text-sky-600">Majestic Volcano</h3>
+                            <p class="text-gray-600 mb-4">Visit Taniti's small but active volcano for a unique sightseeing experience.</p>
+                            <a href="#" class="font-medium text-sky-500 hover:text-sky-700 page-link" data-page="activity-detail" data-activity="volcano">Learn More &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+             <section class="bg-sky-50 p-8 rounded-xl shadow-lg mb-12">
+                <h2 class="text-2xl font-semibold mb-6 text-center text-sky-700">Quick Facts About Taniti</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto text-sky-500 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                        <h3 class="font-semibold text-lg">Location</h3>
+                        <p class="text-gray-600 text-sm">Small tropical island in the Pacific.</p>
+                    </div>
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto text-sky-500 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        <h3 class="font-semibold text-lg">Currency</h3>
+                        <p class="text-gray-600 text-sm">U.S. Dollar (USD). Euros and Yen often accepted.</p>
+                    </div>
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto text-sky-500 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9.5A18.022 18.022 0 0012 14.552M12 14.552V11.999M12 14.552v2.153M12 11.999a2.577 2.577 0 00-2.268-2.416M15 8.588a2.577 2.577 0 00-2.268-2.416m2.268 2.416A2.576 2.576 0 0115 8.588m0 0A2.576 2.576 0 0112 11.999m3-3.411V5.587m0 0A2.576 2.576 0 0012.732 3m0 0A2.576 2.576 0 0010.463 5.587m0 0V8.588m0 0A2.576 2.576 0 0012 11.999m-3-3.411A2.577 2.577 0 006.732 6.171m-3.036.021A18.022 18.022 0 0112 5.587m0 0v2.153M12 5.587A18.023 18.023 0 006.412 9m6.088 9.5A18.023 18.023 0 0112 14.552M12 14.552v2.153M12 14.552A18.023 18.023 0 0017.588 12m0 0A18.023 18.023 0 0012 5.587" /></svg>
+                        <h3 class="font-semibold text-lg">Language</h3>
+                        <p class="text-gray-600 text-sm">Local Tanitian. Younger generation often speaks English.</p>
+                    </div>
+                     <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto text-sky-500 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                        <h3 class="font-semibold text-lg">Power</h3>
+                        <p class="text-gray-600 text-sm">120 Volts (Same as U.S.)</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div id="things-to-do-page" class="page">
+            <h1 class="text-4xl font-bold mb-8 text-center text-sky-700">Things to Do in Taniti</h1>
+
+            <section class="mb-10 p-6 bg-white rounded-xl shadow-lg">
+                <h2 class="text-2xl font-semibold mb-4 text-sky-600">Filter Activities</h2>
+                <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    <div>
+                        <label for="interest-filter" class="block text-sm font-medium text-gray-700 mb-1">By Interest:</label>
+                        <select id="interest-filter" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-sky-500 focus:border-sky-500">
+                            <option>All Interests</option>
+                            <option>Beach Activities</option>
+                            <option>Rainforest Adventures</option>
+                            <option>Volcano Tours</option>
+                            <option>Historical Sites</option>
+                            <option>Water Sports</option>
+                            <option>Cultural Experiences</option>
+                            <option>Nightlife & Dining</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="location-filter" class="block text-sm font-medium text-gray-700 mb-1">By Location:</label>
+                        <select id="location-filter" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-sky-500 focus:border-sky-500">
+                            <option>All Locations</option>
+                            <option>Taniti City</option>
+                            <option>Yellow Leaf Bay</option>
+                            <option>Merriton Landing</option>
+                            <option>Rainforest Interior</option>
+                            <option>Volcano Area</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="type-filter" class="block text-sm font-medium text-gray-700 mb-1">By Type:</label>
+                        <select id="type-filter" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-sky-500 focus:border-sky-500">
+                            <option>All Types</option>
+                            <option>Sightseeing</option>
+                            <option>Adventure</option>
+                            <option>Relaxation</option>
+                            <option>Family-Friendly</option>
+                        </select>
+                    </div>
+                    <div class="self-end">
+                         <button class="w-full btn btn-primary py-2">Apply Filters</button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="card">
+                    <img src="https://placehold.co/600x400/FFD700/333333?text=Snorkeling+Adventure" alt="Snorkeling" class="w-full h-56 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold mb-2 text-sky-600">Snorkeling Adventure</h3>
+                        <p class="text-gray-600 mb-4">Explore vibrant coral reefs and marine life in the crystal-clear waters of Yellow Leaf Bay.</p>
+                        <a href="#" class="btn btn-primary w-full text-center page-link" data-page="activity-detail" data-activity="snorkeling">Learn More</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://placehold.co/600x400/8A2BE2/FFFFFF?text=Rainforest+Zip-Lining" alt="Zip-Lining" class="w-full h-56 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold mb-2 text-sky-600">Rainforest Zip-Lining</h3>
+                        <p class="text-gray-600 mb-4">Soar through the treetops and experience the rainforest from a thrilling new perspective.</p>
+                        <a href="#" class="btn btn-primary w-full text-center page-link" data-page="activity-detail" data-activity="ziplining">Learn More</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://placehold.co/600x400/A52A2A/FFFFFF?text=Local+History+Museum" alt="Museum" class="w-full h-56 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold mb-2 text-sky-600">Local History Museum</h3>
+                        <p class="text-gray-600 mb-4">Discover the rich history and culture of Taniti and its indigenous people.</p>
+                        <a href="#" class="btn btn-primary w-full text-center page-link" data-page="activity-detail" data-activity="museum">Learn More</a>
+                    </div>
+                </div>
+                 <div class="card">
+                    <img src="https://placehold.co/600x400/32CD32/FFFFFF?text=Volcano+Hike" alt="Volcano Hike" class="w-full h-56 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold mb-2 text-sky-600">Guided Volcano Hike</h3>
+                        <p class="text-gray-600 mb-4">Embark on a guided tour to the crater of Taniti's famous volcano. Moderate difficulty.</p>
+                        <a href="#" class="btn btn-primary w-full text-center page-link" data-page="activity-detail" data-activity="volcano-hike">Learn More</a>
+                    </div>
+                </div>
+                 <div class="card">
+                    <img src="https://placehold.co/600x400/FF69B4/FFFFFF?text=Chartered+Fishing+Tour" alt="Fishing Tour" class="w-full h-56 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold mb-2 text-sky-600">Chartered Fishing Tours</h3>
+                        <p class="text-gray-600 mb-4">Enjoy a day out on the ocean with experienced local fishermen. All equipment provided.</p>
+                        <a href="#" class="btn btn-primary w-full text-center page-link" data-page="activity-detail" data-activity="fishing">Learn More</a>
+                    </div>
+                </div>
+                 <div class="card">
+                    <img src="https://placehold.co/600x400/4682B4/FFFFFF?text=Sunset+Cruise" alt="Sunset Cruise" class="w-full h-56 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold mb-2 text-sky-600">Sunset Bay Cruise</h3>
+                        <p class="text-gray-600 mb-4">Experience a breathtaking Tanitian sunset from the water with complimentary drinks.</p>
+                        <a href="#" class="btn btn-primary w-full text-center page-link" data-page="activity-detail" data-activity="sunset-cruise">Learn More</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div id="activity-detail-page" class="page">
+            <div id="activity-content" class="bg-white p-6 sm:p-8 rounded-xl shadow-xl">
+                <h1 class="text-3xl sm:text-4xl font-bold mb-2 text-sky-700">Activity Title</h1>
+                 <img src="https://placehold.co/800x400/CCCCCC/FFFFFF?text=Activity+Image" alt="Activity Image" class="w-full h-64 sm:h-80 md:h-96 object-cover rounded-lg mb-6 shadow-md">
+                <p class="text-gray-600 mb-6 leading-relaxed">Loading activity details...</p>
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <h3 class="text-xl font-semibold text-sky-600 mb-2">Details</h3>
+                        <ul class="list-disc list-inside text-gray-700 space-y-1">
+                            <li><strong>Price:</strong> $XX.XX</li>
+                            <li><strong>Duration:</strong> X hours</li>
+                            <li><strong>Location:</strong> Specific Location</li>
+                            <li><strong>Best For:</strong> Adventure Seekers</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-sky-600 mb-2">What to Bring</h3>
+                        <ul class="list-disc list-inside text-gray-700 space-y-1">
+                            <li>Sunscreen</li>
+                            <li>Comfortable Shoes</li>
+                            <li>Water Bottle</li>
+                            <li>Camera</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="mt-8 pt-6 border-t border-gray-200">
+                    <h3 class="text-2xl font-semibold text-sky-600 mb-3">Booking Information</h3>
+                    <p class="text-gray-600 mb-4">Ready for an adventure? Book your spot today!</p>
+                    <button class="btn btn-primary btn-lg w-full sm:w-auto text-lg">Book Now</button>
+                    <p class="text-sm text-gray-500 mt-3">For more information or group bookings, please call (555) 123-4567 or email <a href="mailto:bookings@taniti.com" class="text-sky-500 hover:underline">bookings@taniti.com</a>.</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="plan-trip-page" class="page">
+             <div class="bg-white p-8 rounded-xl shadow-lg text-center">
+                <h1 class="text-4xl font-bold mb-6 text-sky-700">Plan Your Trip</h1>
+                <p class="text-lg text-gray-600 mb-4">Information on getting to Taniti, transportation, and essential travel tips coming soon!</p>
+                <img src="https://placehold.co/600x300/A7D8DE/333333?text=Travel+Planning" alt="Travel Planning" class="mx-auto rounded-lg shadow-md">
+            </div>
+        </div>
+        <div id="accommodation-page" class="page">
+            <div class="bg-white p-8 rounded-xl shadow-lg text-center">
+                <h1 class="text-4xl font-bold mb-6 text-sky-700">Accommodation</h1>
+                <p class="text-lg text-gray-600 mb-4">Discover a range of lodging options from hostels to luxury resorts. Details coming soon!</p>
+                 <img src="https://placehold.co/600x300/FFCBA4/333333?text=Comfortable+Stays" alt="Accommodation" class="mx-auto rounded-lg shadow-md">
+            </div>
+        </div>
+        <div id="about-taniti-page" class="page">
+            <div class="bg-white p-8 rounded-xl shadow-lg">
+                <h1 class="text-4xl font-bold mb-6 text-center text-sky-700">About Taniti</h1>
+                <div class="prose lg:prose-xl max-w-none mx-auto text-gray-700">
+                    <p>Taniti is a small, tropical island in the Pacific. While the island has an area of less than 500 square miles, the terrain is varied and includes both sandy and rocky beaches, a small but safe harbor, lush tropical rainforests, and a mountainous interior that includes a small, active volcano. Taniti has an indigenous population of about 20,000.</p>
+                    <h2 class="text-sky-600">Tourist Needs</h2>
+                    <p><strong>Restaurants:</strong> Taniti currently has 10 restaurants: five serve mostly local fish and rice, three serve American-style meals, and two serve Pan-Asian cuisine.</p>
+                    <p><strong>Lodging:</strong> Taniti has a wide variety of lodging that ranges from an inexpensive hostel to one large, four-star resort. There are many small, family-owned hotels and a growing number of bed and breakfasts.</p>
+                    <p><strong>Entertainment:</strong> Most people visit Taniti to enjoy the beaches, explore the rainforest, and to visit the volcano. Other activities include visiting a local history museum, chartered fishing tours, snorkeling, zip-lining, and more.</p>
+                    <h2 class="text-sky-600">Transportation</h2>
+                    <p>Almost all visitors arrive to Taniti by air, though some arrive on a small cruise ship. Public buses serve Taniti City, and private buses serve the rest of the island. Taxis and rental cars are available.</p>
+                    <h2 class="text-sky-600">Frequently Requested Information</h2>
+                    <ul class="list-disc pl-5">
+                        <li>Power outlets are 120 volts (the same as in the United States).</li>
+                        <li>The drinking age on Taniti is 18.</li>
+                        <li>Many younger Tanitians speak fluent English.</li>
+                        <li>There is one hospital and several clinics.</li>
+                        <li>Taniti uses the U.S. dollar as its currency.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="bg-gray-800 text-white mt-12">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 text-center">
+            <p>&copy; <span id="currentYear"></span> Taniti Tourism Board. All rights reserved.</p>
+            <p class="text-sm text-gray-400 mt-1">Your adventure starts here!</p>
+        </div>
+    </footer>
+
+    <script>
+        // Basic Page Navigation
+        const pageLinks = document.querySelectorAll('.page-link');
+        const pages = document.querySelectorAll('.page');
+        const navLinks = document.querySelectorAll('header nav a.page-link'); // Select only header nav links for active state
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        // Activity Data (simple representation)
+        const activityDetailsData = {
+            'beaches': {
+                title: 'Pristine Beaches of Taniti',
+                image: 'https://placehold.co/800x400/63A4FF/FFFFFF?text=Sunny+Taniti+Beach',
+                description: 'Taniti boasts a variety of stunning beaches, from the white sandy shores encircling Yellow Leaf Bay, perfect for swimming and sunbathing, to more secluded rocky coves ideal for exploring. Enjoy the warm Pacific waters and relax under the tropical sun. Many beaches offer calm waters suitable for families.',
+                price: 'Free Access',
+                duration: 'Full Day',
+                location: 'Various locations around the island, especially Yellow Leaf Bay',
+                bestFor: 'Relaxation, Families, Swimming',
+                whatToBring: ['Swimsuit', 'Towel', 'Sunscreen', 'Hat', 'Water']
+            },
+            'rainforest': {
+                title: 'Explore the Lush Rainforests',
+                image: 'https://placehold.co/800x400/228B22/FFFFFF?text=Deep+Rainforest+Trail',
+                description: 'Taniti\'s lush tropical rainforests are home to a diverse range of flora and fauna. Embark on guided hikes to discover hidden waterfalls, exotic birds, and unique plant species. The rainforest also offers thrilling zip-lining adventures for the more adventurous visitor. Trails range from easy walks to more challenging treks.',
+                price: 'Varies (Free for self-guided hikes, fees for tours/zip-lining)',
+                duration: '2 hours to Full Day',
+                location: 'Island Interior',
+                bestFor: 'Nature Lovers, Hikers, Adventure Seekers',
+                whatToBring: ['Hiking Boots', 'Insect Repellent', 'Water Bottle', 'Rain Gear (just in case)', 'Camera']
+            },
+            'volcano': {
+                title: 'Visit Taniti\'s Majestic Volcano',
+                image: 'https://placehold.co/800x400/FF7F50/FFFFFF?text=Taniti+Volcano+Peak',
+                description: 'Experience the awe of Taniti\'s small but active volcano. Guided tours are available, offering safe access to viewpoints near the crater. Learn about the geology of the island and witness volcanic activity. This is a unique sightseeing opportunity not to be missed. The area around the volcano also offers stunning panoramic views of the island.',
+                price: '$50 - $100 per person (for guided tours)',
+                duration: '3-4 hours',
+                location: 'Mountainous Interior',
+                bestFor: 'Sightseeing, Photography, Geology Enthusiasts',
+                whatToBring: ['Sturdy Shoes', 'Light Jacket', 'Water', 'Camera', 'Sunscreen']
+            },
+            'snorkeling': {
+                title: 'Snorkeling Adventure in Yellow Leaf Bay',
+                image: 'https://placehold.co/800x400/FFD700/333333?text=Colorful+Coral+Reef',
+                description: 'Dive into the crystal-clear waters of Yellow Leaf Bay and discover a vibrant underwater world. Our guided snorkeling tours take you to the best spots to see colorful coral reefs, tropical fish, and other fascinating marine life. Suitable for all skill levels, equipment provided.',
+                price: '$45 per person',
+                duration: '2.5 hours',
+                location: 'Yellow Leaf Bay',
+                bestFor: 'Water Enthusiasts, Families, All Skill Levels',
+                whatToBring: ['Swimsuit', 'Towel', 'Waterproof Sunscreen', 'Underwater Camera (optional)']
+            },
+            'ziplining': {
+                title: 'Thrilling Rainforest Zip-Lining',
+                image: 'https://placehold.co/800x400/8A2BE2/FFFFFF?text=Zip-Lining+Action',
+                description: 'Experience the ultimate adrenaline rush as you soar through the rainforest canopy on our state-of-the-art zip-line course. Enjoy breathtaking views and learn about the rainforest ecosystem from our experienced guides. Safety is our top priority.',
+                price: '$89 per person',
+                duration: '3 hours (including briefing)',
+                location: 'Rainforest Park, Merriton Landing vicinity',
+                bestFor: 'Adventure Seekers, Thrill Lovers (min. age/weight may apply)',
+                whatToBring: ['Closed-toe Shoes', 'Comfortable Clothing', 'Insect Repellent', 'Small Backpack']
+            },
+            'museum': {
+                title: 'Taniti Local History Museum',
+                image: 'https://placehold.co/800x400/A52A2A/FFFFFF?text=Museum+Artifacts',
+                description: 'Step back in time and explore the rich cultural heritage of Taniti at the Local History Museum. Discover artifacts, photographs, and exhibits detailing the island\'s indigenous history, colonial past, and development into a tourist destination.',
+                price: '$10 per person (Adults), $5 (Children)',
+                duration: '1-2 hours',
+                location: 'Taniti City',
+                bestFor: 'History Buffs, Cultural Exploration, Families',
+                whatToBring: ['Curiosity!']
+            },
+             'volcano-hike': {
+                title: 'Guided Volcano Hike Adventure',
+                image: 'https://placehold.co/800x400/32CD32/FFFFFF?text=Volcano+Trail',
+                description: 'Embark on an unforgettable guided hike to the summit of Taniti\'s volcano. Learn about its geological history, witness steaming vents, and enjoy panoramic views. This moderately challenging hike is rewarding for nature and adventure lovers.',
+                price: '$75 per person',
+                duration: '4-5 hours',
+                location: 'Volcano National Park',
+                bestFor: 'Hikers, Adventure, Scenic Views',
+                whatToBring: ['Hiking Boots', 'Water (at least 2L)', 'Snacks', 'Sunscreen', 'Hat', 'Camera']
+            },
+            'fishing': {
+                title: 'Chartered Deep Sea Fishing',
+                image: 'https://placehold.co/800x400/FF69B4/FFFFFF?text=Big+Catch+Fishing',
+                description: 'Join our experienced local captains for an exciting day of deep-sea fishing. Target species like marlin, tuna, and mahi-mahi. All equipment, bait, and licenses are provided. Suitable for both novice and experienced anglers.',
+                price: '$200 per person (half-day), $350 (full-day)',
+                duration: '4 hours (half-day) / 8 hours (full-day)',
+                location: 'Departs from Taniti Harbor',
+                bestFor: 'Anglers, Ocean Lovers, Adventure',
+                whatToBring: ['Sunscreen', 'Hat', 'Sunglasses', 'Seasickness medication (if needed)']
+            },
+            'sunset-cruise': {
+                title: 'Romantic Sunset Bay Cruise',
+                image: 'https://placehold.co/800x400/4682B4/FFFFFF?text=Beautiful+Sunset+at+Sea',
+                description: 'Experience the magic of a Tanitian sunset from the best vantage point – the water! Our comfortable cruise around Yellow Leaf Bay includes complimentary local snacks and drinks. Perfect for couples and photographers.',
+                price: '$60 per person',
+                duration: '2 hours',
+                location: 'Departs from Yellow Leaf Bay Marina',
+                bestFor: 'Couples, Relaxation, Photography',
+                whatToBring: ['Light Jacket', 'Camera']
+            }
+            // Add more activities as needed
+        };
+
+        function showPage(pageId, activityId = null) {
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+            const targetPage = document.getElementById(pageId + '-page');
+            if (targetPage) {
+                targetPage.classList.add('active');
+                window.scrollTo(0, 0); // Scroll to top on page change
+            }
+
+            // Handle active state for navigation links
+            navLinks.forEach(link => {
+                link.classList.remove('active-nav');
+                if (link.dataset.page === pageId) {
+                    link.classList.add('active-nav');
+                }
+            });
+            
+            // If it's the activity detail page, load the content
+            if (pageId === 'activity-detail' && activityId) {
+                loadActivityContent(activityId);
+            }
+
+            // Close mobile menu on navigation
+            if(mobileMenu.classList.contains('block')) {
+                mobileMenu.classList.remove('block');
+                mobileMenu.classList.add('hidden');
+            }
+        }
+
+        function loadActivityContent(activityId) {
+            const contentArea = document.getElementById('activity-content');
+            const data = activityDetailsData[activityId];
+
+            if (data) {
+                contentArea.innerHTML = `
+                    <button class="page-link mb-4 text-sky-500 hover:text-sky-700 font-medium" data-page="things-to-do">&larr; Back to All Activities</button>
+                    <h1 class="text-3xl sm:text-4xl font-bold mb-2 text-sky-700">${data.title}</h1>
+                    <img src="${data.image}" alt="${data.title}" class="w-full h-64 sm:h-80 md:h-96 object-cover rounded-lg mb-6 shadow-md">
+                    <p class="text-gray-700 mb-6 leading-relaxed">${data.description}</p>
+                    <div class="grid md:grid-cols-2 gap-x-8 gap-y-6 mb-6">
+                        <div>
+                            <h3 class="text-xl font-semibold text-sky-600 mb-2">Details</h3>
+                            <ul class="list-none text-gray-700 space-y-1">
+                                <li><strong>Price:</strong> ${data.price}</li>
+                                <li><strong>Duration:</strong> ${data.duration}</li>
+                                <li><strong>Location:</strong> ${data.location}</li>
+                                <li><strong>Best For:</strong> ${data.bestFor}</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-sky-600 mb-2">What to Bring</h3>
+                            <ul class="list-disc list-inside text-gray-700 space-y-1">
+                                ${data.whatToBring.map(item => `<li>${item}</li>`).join('')}
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="mt-8 pt-6 border-t border-gray-200">
+                        <h3 class="text-2xl font-semibold text-sky-600 mb-3">Booking Information</h3>
+                        <p class="text-gray-600 mb-4">Ready for this amazing experience? Secure your spot now!</p>
+                        <button class="btn btn-primary btn-lg w-full sm:w-auto text-lg">Book Now: ${data.title}</button>
+                        <p class="text-sm text-gray-500 mt-3">For more information or group bookings, please call (555) 123-4567 or email <a href="mailto:bookings@taniti.com" class="text-sky-500 hover:underline">bookings@taniti.com</a>.</p>
+                    </div>
+                `;
+                 // Re-attach event listeners for any new .page-link buttons inside the loaded content
+                attachPageLinkListeners(contentArea);
+
+            } else {
+                contentArea.innerHTML = '<p>Activity details not found.</p>';
+            }
+        }
+        
+        function attachPageLinkListeners(parentElement) {
+            const linksToAttach = parentElement.querySelectorAll('.page-link');
+            linksToAttach.forEach(link => {
+                link.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    const pageId = link.dataset.page;
+                    const activityId = link.dataset.activity || null;
+                    showPage(pageId, activityId);
+                });
+            });
+        }
+
+        // Initial setup: attach listeners to all page links
+        attachPageLinkListeners(document.body);
+
+
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Show the initial page (home)
+        showPage('home');
+
+        // Mobile menu toggle
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('block');
+        });
+
+    </script>
+</body>
+</html>
