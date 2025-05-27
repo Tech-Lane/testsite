@@ -39,7 +39,7 @@
             @apply bg-sky-500 text-white hover:bg-sky-600;
         }
         .card {
-            @apply bg-white rounded-xl shadow-lg overflow-hidden transition-shadow duration-300 hover:shadow-xl;
+            @apply bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl;
         }
         .btn {
             @apply px-6 py-3 rounded-lg font-semibold text-white transition-colors duration-300;
@@ -54,6 +54,10 @@
             background-image: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.1)), url('https://placehold.co/1200x600/63A4FF/FFFFFF?text=Beautiful+Taniti+Beach');
             background-size: cover;
             background-position: center;
+        }
+        /* Style for hidden cards */
+        .activity-card.hidden-card { /* More specific selector for activity cards */
+            display: none;
         }
     </style>
 </head>
@@ -109,7 +113,7 @@
                 <h2 class="text-3xl font-semibold mb-8 text-center text-sky-700">Explore Our Island</h2>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <div class="card">
-                        <img src="https://placehold.co/600x400/87CEEB/FFFFFF?text=Pristine+Beaches" alt="Pristine Beaches" class="w-full h-48 object-cover">
+                        <img src="https://placehold.co/600x400/87CEEB/FFFFFF?text=Pristine+Beaches" alt="Pristine Beaches" class="w-full h-48 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x400/CCCCCC/FFFFFF?text=Image+Not+Found';">
                         <div class="p-6">
                             <h3 class="text-xl font-semibold mb-2 text-sky-600">Pristine Beaches</h3>
                             <p class="text-gray-600 mb-4">Relax on our sandy and rocky shores, perfect for sunbathing and swimming.</p>
@@ -117,7 +121,7 @@
                         </div>
                     </div>
                     <div class="card">
-                        <img src="https://placehold.co/600x400/228B22/FFFFFF?text=Lush+Rainforests" alt="Lush Rainforests" class="w-full h-48 object-cover">
+                        <img src="https://placehold.co/600x400/228B22/FFFFFF?text=Lush+Rainforests" alt="Lush Rainforests" class="w-full h-48 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x400/CCCCCC/FFFFFF?text=Image+Not+Found';">
                         <div class="p-6">
                             <h3 class="text-xl font-semibold mb-2 text-sky-600">Lush Rainforests</h3>
                             <p class="text-gray-600 mb-4">Discover diverse flora and fauna in our tropical rainforests. Ideal for hiking and zip-lining.</p>
@@ -125,7 +129,7 @@
                         </div>
                     </div>
                     <div class="card">
-                        <img src="https://placehold.co/600x400/FF7F50/FFFFFF?text=Active+Volcano" alt="Active Volcano" class="w-full h-48 object-cover">
+                        <img src="https://placehold.co/600x400/FF7F50/FFFFFF?text=Active+Volcano" alt="Active Volcano" class="w-full h-48 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x400/CCCCCC/FFFFFF?text=Image+Not+Found';">
                         <div class="p-6">
                             <h3 class="text-xl font-semibold mb-2 text-sky-600">Majestic Volcano</h3>
                             <p class="text-gray-600 mb-4">Visit Taniti's small but active volcano for a unique sightseeing experience.</p>
@@ -166,95 +170,101 @@
 
             <section class="mb-10 p-6 bg-white rounded-xl shadow-lg">
                 <h2 class="text-2xl font-semibold mb-4 text-sky-600">Filter Activities</h2>
-                <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 items-end">
                     <div>
                         <label for="interest-filter" class="block text-sm font-medium text-gray-700 mb-1">By Interest:</label>
                         <select id="interest-filter" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-sky-500 focus:border-sky-500">
-                            <option>All Interests</option>
-                            <option>Beach Activities</option>
-                            <option>Rainforest Adventures</option>
-                            <option>Volcano Tours</option>
-                            <option>Historical Sites</option>
-                            <option>Water Sports</option>
-                            <option>Cultural Experiences</option>
-                            <option>Nightlife & Dining</option>
+                            <option value="all">All Interests</option>
+                            <option value="beach-water">Beach & Water Sports</option>
+                            <option value="rainforest-adventure">Rainforest & Adventure</option>
+                            <option value="volcano-sightseeing">Volcano & Sightseeing</option>
+                            <option value="cultural-historical">Cultural & Historical</option>
+                            <option value="nightlife-dining">Nightlife & Dining</option>
                         </select>
                     </div>
                     <div>
                         <label for="location-filter" class="block text-sm font-medium text-gray-700 mb-1">By Location:</label>
                         <select id="location-filter" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-sky-500 focus:border-sky-500">
-                            <option>All Locations</option>
-                            <option>Taniti City</option>
-                            <option>Yellow Leaf Bay</option>
-                            <option>Merriton Landing</option>
-                            <option>Rainforest Interior</option>
-                            <option>Volcano Area</option>
+                            <option value="all">All Locations</option>
+                            <option value="taniti-city">Taniti City</option>
+                            <option value="yellow-leaf-bay">Yellow Leaf Bay</option>
+                            <option value="merriton-landing">Merriton Landing</option>
+                            <option value="rainforest-interior">Rainforest Interior</option>
+                            <option value="volcano-area">Volcano Area</option>
                         </select>
                     </div>
                     <div>
                         <label for="type-filter" class="block text-sm font-medium text-gray-700 mb-1">By Type:</label>
                         <select id="type-filter" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-sky-500 focus:border-sky-500">
-                            <option>All Types</option>
-                            <option>Sightseeing</option>
-                            <option>Adventure</option>
-                            <option>Relaxation</option>
-                            <option>Family-Friendly</option>
+                            <option value="all">All Types</option>
+                            <option value="sightseeing">Sightseeing</option>
+                            <option value="adventure">Adventure</option>
+                            <option value="relaxation">Relaxation</option>
+                            <option value="family-friendly">Family-Friendly</option>
                         </select>
                     </div>
-                    <div class="self-end">
-                         <button class="w-full btn btn-primary py-2">Apply Filters</button>
+                    <div class="pt-2 sm:pt-0">
+                         <button id="apply-filters-button" class="w-full btn btn-primary py-2">Apply Filters</button>
                     </div>
                 </div>
             </section>
 
-            <section class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="card">
-                    <img src="https://placehold.co/600x400/FFD700/333333?text=Snorkeling+Adventure" alt="Snorkeling" class="w-full h-56 object-cover">
+            <section id="activity-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="card activity-card" data-interest="beach-water" data-location="yellow-leaf-bay" data-type="relaxation family-friendly">
+                    <img src="https://placehold.co/600x400/FFD700/333333?text=Snorkeling+Adventure" alt="Snorkeling" class="w-full h-56 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x400/CCCCCC/FFFFFF?text=Image+Not+Found';">
                     <div class="p-6">
                         <h3 class="text-2xl font-semibold mb-2 text-sky-600">Snorkeling Adventure</h3>
                         <p class="text-gray-600 mb-4">Explore vibrant coral reefs and marine life in the crystal-clear waters of Yellow Leaf Bay.</p>
                         <a href="#" class="btn btn-primary w-full text-center page-link" data-page="activity-detail" data-activity="snorkeling">Learn More</a>
                     </div>
                 </div>
-                <div class="card">
-                    <img src="https://placehold.co/600x400/8A2BE2/FFFFFF?text=Rainforest+Zip-Lining" alt="Zip-Lining" class="w-full h-56 object-cover">
+                <div class="card activity-card" data-interest="rainforest-adventure" data-location="rainforest-interior" data-type="adventure">
+                    <img src="https://placehold.co/600x400/8A2BE2/FFFFFF?text=Rainforest+Zip-Lining" alt="Zip-Lining" class="w-full h-56 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x400/CCCCCC/FFFFFF?text=Image+Not+Found';">
                     <div class="p-6">
                         <h3 class="text-2xl font-semibold mb-2 text-sky-600">Rainforest Zip-Lining</h3>
                         <p class="text-gray-600 mb-4">Soar through the treetops and experience the rainforest from a thrilling new perspective.</p>
                         <a href="#" class="btn btn-primary w-full text-center page-link" data-page="activity-detail" data-activity="ziplining">Learn More</a>
                     </div>
                 </div>
-                <div class="card">
-                    <img src="https://placehold.co/600x400/A52A2A/FFFFFF?text=Local+History+Museum" alt="Museum" class="w-full h-56 object-cover">
+                <div class="card activity-card" data-interest="cultural-historical" data-location="taniti-city" data-type="sightseeing family-friendly">
+                    <img src="https://placehold.co/600x400/A52A2A/FFFFFF?text=Local+History+Museum" alt="Museum" class="w-full h-56 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x400/CCCCCC/FFFFFF?text=Image+Not+Found';">
                     <div class="p-6">
                         <h3 class="text-2xl font-semibold mb-2 text-sky-600">Local History Museum</h3>
                         <p class="text-gray-600 mb-4">Discover the rich history and culture of Taniti and its indigenous people.</p>
                         <a href="#" class="btn btn-primary w-full text-center page-link" data-page="activity-detail" data-activity="museum">Learn More</a>
                     </div>
                 </div>
-                 <div class="card">
-                    <img src="https://placehold.co/600x400/32CD32/FFFFFF?text=Volcano+Hike" alt="Volcano Hike" class="w-full h-56 object-cover">
+                 <div class="card activity-card" data-interest="volcano-sightseeing" data-location="volcano-area" data-type="adventure sightseeing">
+                    <img src="https://placehold.co/600x400/32CD32/FFFFFF?text=Volcano+Hike" alt="Volcano Hike" class="w-full h-56 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x400/CCCCCC/FFFFFF?text=Image+Not+Found';">
                     <div class="p-6">
                         <h3 class="text-2xl font-semibold mb-2 text-sky-600">Guided Volcano Hike</h3>
                         <p class="text-gray-600 mb-4">Embark on a guided tour to the crater of Taniti's famous volcano. Moderate difficulty.</p>
                         <a href="#" class="btn btn-primary w-full text-center page-link" data-page="activity-detail" data-activity="volcano-hike">Learn More</a>
                     </div>
                 </div>
-                 <div class="card">
-                    <img src="https://placehold.co/600x400/FF69B4/FFFFFF?text=Chartered+Fishing+Tour" alt="Fishing Tour" class="w-full h-56 object-cover">
+                 <div class="card activity-card" data-interest="beach-water" data-location="yellow-leaf-bay" data-type="adventure">
+                    <img src="https://placehold.co/600x400/FF69B4/FFFFFF?text=Chartered+Fishing+Tour" alt="Fishing Tour" class="w-full h-56 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x400/CCCCCC/FFFFFF?text=Image+Not+Found';">
                     <div class="p-6">
                         <h3 class="text-2xl font-semibold mb-2 text-sky-600">Chartered Fishing Tours</h3>
                         <p class="text-gray-600 mb-4">Enjoy a day out on the ocean with experienced local fishermen. All equipment provided.</p>
                         <a href="#" class="btn btn-primary w-full text-center page-link" data-page="activity-detail" data-activity="fishing">Learn More</a>
                     </div>
                 </div>
-                 <div class="card">
-                    <img src="https://placehold.co/600x400/4682B4/FFFFFF?text=Sunset+Cruise" alt="Sunset Cruise" class="w-full h-56 object-cover">
+                 <div class="card activity-card" data-interest="beach-water nightlife-dining" data-location="yellow-leaf-bay" data-type="relaxation sightseeing">
+                    <img src="https://placehold.co/600x400/4682B4/FFFFFF?text=Sunset+Cruise" alt="Sunset Cruise" class="w-full h-56 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x400/CCCCCC/FFFFFF?text=Image+Not+Found';">
                     <div class="p-6">
                         <h3 class="text-2xl font-semibold mb-2 text-sky-600">Sunset Bay Cruise</h3>
                         <p class="text-gray-600 mb-4">Experience a breathtaking Tanitian sunset from the water with complimentary drinks.</p>
                         <a href="#" class="btn btn-primary w-full text-center page-link" data-page="activity-detail" data-activity="sunset-cruise">Learn More</a>
                     </div>
+                </div>
+                <div id="no-results-message" class="hidden-card col-span-full text-center py-10">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto text-gray-400 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 4a1 1 0 100-2 1 1 0 000 2z" />
+                    </svg>
+                    <p class="text-xl text-gray-500">No activities match your current filters.</p>
+                    <p class="text-gray-400">Try adjusting your search criteria.</p>
                 </div>
             </section>
         </div>
@@ -262,7 +272,7 @@
         <div id="activity-detail-page" class="page">
             <div id="activity-content" class="bg-white p-6 sm:p-8 rounded-xl shadow-xl">
                 <h1 class="text-3xl sm:text-4xl font-bold mb-2 text-sky-700">Activity Title</h1>
-                 <img src="https://placehold.co/800x400/CCCCCC/FFFFFF?text=Activity+Image" alt="Activity Image" class="w-full h-64 sm:h-80 md:h-96 object-cover rounded-lg mb-6 shadow-md">
+                 <img src="https://placehold.co/800x400/CCCCCC/FFFFFF?text=Activity+Image" alt="Activity Image" class="w-full h-64 sm:h-80 md:h-96 object-cover rounded-lg mb-6 shadow-md" onerror="this.onerror=null;this.src='https://placehold.co/800x400/CCCCCC/FFFFFF?text=Image+Not+Found';">
                 <p class="text-gray-600 mb-6 leading-relaxed">Loading activity details...</p>
                 <div class="grid md:grid-cols-2 gap-6 mb-6">
                     <div>
@@ -298,14 +308,14 @@
              <div class="bg-white p-8 rounded-xl shadow-lg text-center">
                 <h1 class="text-4xl font-bold mb-6 text-sky-700">Plan Your Trip</h1>
                 <p class="text-lg text-gray-600 mb-4">Information on getting to Taniti, transportation, and essential travel tips coming soon!</p>
-                <img src="https://placehold.co/600x300/A7D8DE/333333?text=Travel+Planning" alt="Travel Planning" class="mx-auto rounded-lg shadow-md">
+                <img src="https://placehold.co/600x300/A7D8DE/333333?text=Travel+Planning" alt="Travel Planning" class="mx-auto rounded-lg shadow-md" onerror="this.onerror=null;this.src='https://placehold.co/600x300/CCCCCC/FFFFFF?text=Image+Not+Found';">
             </div>
         </div>
         <div id="accommodation-page" class="page">
             <div class="bg-white p-8 rounded-xl shadow-lg text-center">
                 <h1 class="text-4xl font-bold mb-6 text-sky-700">Accommodation</h1>
                 <p class="text-lg text-gray-600 mb-4">Discover a range of lodging options from hostels to luxury resorts. Details coming soon!</p>
-                 <img src="https://placehold.co/600x300/FFCBA4/333333?text=Comfortable+Stays" alt="Accommodation" class="mx-auto rounded-lg shadow-md">
+                 <img src="https://placehold.co/600x300/FFCBA4/333333?text=Comfortable+Stays" alt="Accommodation" class="mx-auto rounded-lg shadow-md" onerror="this.onerror=null;this.src='https://placehold.co/600x300/CCCCCC/FFFFFF?text=Image+Not+Found';">
             </div>
         </div>
         <div id="about-taniti-page" class="page">
@@ -344,11 +354,11 @@
         // Basic Page Navigation
         const pageLinks = document.querySelectorAll('.page-link');
         const pages = document.querySelectorAll('.page');
-        const navLinks = document.querySelectorAll('header nav a.page-link'); // Select only header nav links for active state
+        const navLinks = document.querySelectorAll('header nav a.page-link');
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
 
-        // Activity Data (simple representation)
+        // Activity Data
         const activityDetailsData = {
             'beaches': {
                 title: 'Pristine Beaches of Taniti',
@@ -440,7 +450,6 @@
                 bestFor: 'Couples, Relaxation, Photography',
                 whatToBring: ['Light Jacket', 'Camera']
             }
-            // Add more activities as needed
         };
 
         function showPage(pageId, activityId = null) {
@@ -450,10 +459,9 @@
             const targetPage = document.getElementById(pageId + '-page');
             if (targetPage) {
                 targetPage.classList.add('active');
-                window.scrollTo(0, 0); // Scroll to top on page change
+                window.scrollTo(0, 0);
             }
 
-            // Handle active state for navigation links
             navLinks.forEach(link => {
                 link.classList.remove('active-nav');
                 if (link.dataset.page === pageId) {
@@ -461,12 +469,10 @@
                 }
             });
             
-            // If it's the activity detail page, load the content
             if (pageId === 'activity-detail' && activityId) {
                 loadActivityContent(activityId);
             }
 
-            // Close mobile menu on navigation
             if(mobileMenu.classList.contains('block')) {
                 mobileMenu.classList.remove('block');
                 mobileMenu.classList.add('hidden');
@@ -481,7 +487,7 @@
                 contentArea.innerHTML = `
                     <button class="page-link mb-4 text-sky-500 hover:text-sky-700 font-medium" data-page="things-to-do">&larr; Back to All Activities</button>
                     <h1 class="text-3xl sm:text-4xl font-bold mb-2 text-sky-700">${data.title}</h1>
-                    <img src="${data.image}" alt="${data.title}" class="w-full h-64 sm:h-80 md:h-96 object-cover rounded-lg mb-6 shadow-md">
+                    <img src="${data.image}" alt="${data.title}" class="w-full h-64 sm:h-80 md:h-96 object-cover rounded-lg mb-6 shadow-md" onerror="this.onerror=null;this.src='https://placehold.co/800x400/CCCCCC/FFFFFF?text=Image+Not+Found';">
                     <p class="text-gray-700 mb-6 leading-relaxed">${data.description}</p>
                     <div class="grid md:grid-cols-2 gap-x-8 gap-y-6 mb-6">
                         <div>
@@ -507,7 +513,6 @@
                         <p class="text-sm text-gray-500 mt-3">For more information or group bookings, please call (555) 123-4567 or email <a href="mailto:bookings@taniti.com" class="text-sky-500 hover:underline">bookings@taniti.com</a>.</p>
                     </div>
                 `;
-                 // Re-attach event listeners for any new .page-link buttons inside the loaded content
                 attachPageLinkListeners(contentArea);
 
             } else {
@@ -518,30 +523,65 @@
         function attachPageLinkListeners(parentElement) {
             const linksToAttach = parentElement.querySelectorAll('.page-link');
             linksToAttach.forEach(link => {
-                link.addEventListener('click', (event) => {
-                    event.preventDefault();
-                    const pageId = link.dataset.page;
-                    const activityId = link.dataset.activity || null;
-                    showPage(pageId, activityId);
-                });
+                // Check if listener already attached to prevent duplicates
+                if (!link.hasAttribute('data-listener-attached')) {
+                    link.addEventListener('click', (event) => {
+                        event.preventDefault();
+                        const pageId = link.dataset.page;
+                        const activityId = link.dataset.activity || null;
+                        showPage(pageId, activityId);
+                    });
+                    link.setAttribute('data-listener-attached', 'true');
+                }
             });
         }
 
-        // Initial setup: attach listeners to all page links
         attachPageLinkListeners(document.body);
 
-
-        // Set current year in footer
         document.getElementById('currentYear').textContent = new Date().getFullYear();
-
-        // Show the initial page (home)
         showPage('home');
 
-        // Mobile menu toggle
         mobileMenuButton.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
             mobileMenu.classList.toggle('block');
         });
+
+        // Filtering Logic
+        const applyFiltersButton = document.getElementById('apply-filters-button');
+        const activityCards = document.querySelectorAll('#activity-grid .activity-card');
+        const noResultsMessage = document.getElementById('no-results-message');
+
+        if (applyFiltersButton) {
+            applyFiltersButton.addEventListener('click', () => {
+                const selectedInterest = document.getElementById('interest-filter').value;
+                const selectedLocation = document.getElementById('location-filter').value;
+                const selectedType = document.getElementById('type-filter').value;
+                let resultsFound = false;
+
+                activityCards.forEach(card => {
+                    const cardInterest = card.dataset.interest;
+                    const cardLocation = card.dataset.location;
+                    const cardType = card.dataset.type; // This can contain multiple types separated by space
+
+                    const interestMatch = selectedInterest === 'all' || cardInterest.includes(selectedInterest);
+                    const locationMatch = selectedLocation === 'all' || cardLocation.includes(selectedLocation);
+                    const typeMatch = selectedType === 'all' || cardType.includes(selectedType);
+
+                    if (interestMatch && locationMatch && typeMatch) {
+                        card.classList.remove('hidden-card');
+                        resultsFound = true;
+                    } else {
+                        card.classList.add('hidden-card');
+                    }
+                });
+
+                if (resultsFound) {
+                    noResultsMessage.classList.add('hidden-card');
+                } else {
+                    noResultsMessage.classList.remove('hidden-card');
+                }
+            });
+        }
 
     </script>
 </body>
